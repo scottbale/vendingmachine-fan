@@ -1,3 +1,4 @@
+#! /usr/bin/env fan
 using build
 
 class Build : BuildPod
