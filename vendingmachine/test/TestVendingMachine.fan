@@ -1,14 +1,20 @@
 class TestVendingMachine : Test 
 {
+	VendingMachine vm
+
+	override
+	Void setup()
+	{
+		vm = VendingMachine()
+	}
+
 	Void testCoinReturn()
 	{
-		vm := VendingMachine()
 		verify(vm.coinReturn().isEmpty())
 	}
 	
 	Void testDepositCoinThenCoinReturn()
 	{
-		vm := VendingMachine()
 		vm.deposit(Int[5])
 		verifyEq(vm.coinReturn().first(), 5) 
 		verify(vm.coinReturn().isEmpty())
@@ -16,7 +22,6 @@ class TestVendingMachine : Test
 	
 	Void testAdminLoadCoins()
 	{
-		vm := VendingMachine()
 		verify(vm.getCoins().isEmpty())
 		vm.loadCoins(Int[3])
 		verifyEq(vm.getCoins().first(), 3)
@@ -24,6 +29,13 @@ class TestVendingMachine : Test
 	
 	Void testDepositCoinsNotReflectedInGetCoins()
 	{
+		vm.deposit(Int[5,3])
+		verify(vm.getCoins().isEmpty())
 	}
-		
+
+	Void testGetCoinsNotReflectedInCoinReturn()
+	{
+		vm.loadCoins(Int[5,3])
+		verify(vm.coinReturn().isEmpty())
+	}		
 }
