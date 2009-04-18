@@ -1,26 +1,26 @@
 class VendingMachine
 {
-	Int[] coins := Int[,]
-	Int[] coinsPending := Int[,]
+	Coin[] coins := Coin[,]
+	Coin[] coinsPending := Coin[,]
 
-	Int[] coinReturn()
+	Coin[] coinReturn()
 	{
 		result := coinsPending.dup()
 		coinsPending.clear()
 		return result
 	}
 	
-	Void deposit(Int[] coins)
+	Void deposit(Coin[] coins)
 	{
 		this.coinsPending.addAll(coins)
 	}
 	
-	Int[] getCoins()
+	Coin[] getCoins()
 	{
 		return coins
 	}
 	
-	Void loadCoins(Int[] coins)
+	Void loadCoins(Coin[] coins)
 	{
 		this.coins.addAll(coins)
 	}

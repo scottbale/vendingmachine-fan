@@ -15,27 +15,27 @@ class TestVendingMachine : Test
 	
 	Void testDepositCoinThenCoinReturn()
 	{
-		vm.deposit(Int[5])
-		verifyEq(vm.coinReturn().first(), 5) 
+		vm.deposit(Coin[Coin.nickel])
+		verifyEq(vm.coinReturn().first(), Coin.nickel) 
 		verify(vm.coinReturn().isEmpty())
 	}
 	
-	Void testAdminLoadCoins()
+	Void testServiceLoadCoins()
 	{
 		verify(vm.getCoins().isEmpty())
-		vm.loadCoins(Int[3])
-		verifyEq(vm.getCoins().first(), 3)
+		vm.loadCoins(Coin[Coin.dime])
+		verifyEq(vm.getCoins().first(), Coin.dime)
 	} 
 	
 	Void testDepositCoinsNotReflectedInGetCoins()
 	{
-		vm.deposit(Int[5,3])
+		vm.deposit(Coin[Coin.nickel, Coin.dime])
 		verify(vm.getCoins().isEmpty())
 	}
 
 	Void testGetCoinsNotReflectedInCoinReturn()
 	{
-		vm.loadCoins(Int[5,3])
+		vm.loadCoins(Coin[Coin.nickel, Coin.dime])
 		verify(vm.coinReturn().isEmpty())
 	}		
 }
