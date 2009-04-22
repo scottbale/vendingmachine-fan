@@ -5,19 +5,14 @@ class VendingMachine
 
 	Coin[] coinReturn()
 	{
-		result := coinsPending.dup()
-		coinsPending.clear()
+		result := coinsPending.dup
+		coinsPending.clear
 		return result
 	}
 	
 	Void deposit(Coin[] coins)
 	{
 		this.coinsPending.addAll(coins)
-	}
-	
-	Coin[] getCoins()
-	{
-		return coins
 	}
 	
 	Void loadCoins(Coin[] coins)
