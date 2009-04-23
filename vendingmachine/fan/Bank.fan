@@ -19,4 +19,24 @@ class Bank
 	{
 		this.coins.addAll(coins)
 	}
+	
+	Bool purchase(Int price)
+	{
+		if (this.sufficientFunds(price)){
+			this.coins.addAll(coinsPending)
+			this.coinsPending.clear
+			return true
+		}
+		return false
+	}
+	
+	private Bool sufficientFunds(Int price)
+	{
+		amt := 0
+		coinsPending.each | Coin coin | {amt += coin.cents}
+		if (amt >= price){
+			return true
+		}
+		return false
+	}
 }

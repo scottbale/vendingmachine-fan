@@ -38,4 +38,21 @@ class TestBank : Test
 		bank.loadCoins(Coin[Coin.nickel, Coin.dime])
 		verify(bank.coinReturn.isEmpty)
 	}
+	
+	Void testPurchaseWithInsufficientFunds()
+	{
+		coins := Coin[Coin.nickel, Coin.dime]
+		bank.deposit(coins)
+		verifyFalse(bank.purchase(85))
+		verifyEq(coins, bank.coinReturn)
+	}
+	
+	Void testPurchase()
+	{
+		coins := Coin[Coin.quarter, Coin.quarter, Coin.dime]
+		bank.deposit(coins)
+		verify(bank.purchase(60))
+		verify(bank.coinReturn.isEmpty)
+		verifyEq(coins, bank.coins)
+	}
 }	
