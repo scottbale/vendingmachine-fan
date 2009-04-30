@@ -12,7 +12,7 @@ class Bank
 	
 	Void deposit(Coin[] coins)
 	{
-		this.coinsToReturn.addAll(coins)
+		coinsToReturn.addAll(coins)
 	}
 	
 	Void loadCoins(Coin[] coins)
@@ -22,9 +22,9 @@ class Bank
 	
 	Bool purchase(Int price)
 	{
-		if (this.sufficientFunds(price)){
-			Int changeDue := this.acceptCoins(price)
-			this.makeChange(changeDue)
+		if (sufficientFunds(price)){
+			Int changeDue := acceptCoins(price)
+			makeChange(changeDue)
 			return true
 		}
 		return false
@@ -44,15 +44,14 @@ class Bank
 	{
 		Int changeDue := coinsToReturn.reduce(0) |Obj change, Coin coin->Obj| { return (Int)change + coin.cents }
 		changeDue -= price
-		this.coins.addAll(coinsToReturn)
-		this.coinsToReturn.clear
+		coins.addAll(coinsToReturn)
+		coinsToReturn.clear
 		return changeDue
 	}
 	
 	private Void makeChange(Int changeDue)
 	{
-		this.sortCoins
-		echo("sorted coins: " + coins)
+		sortCoins
 		coins.eachWhile |Coin coin->Int?| 
 		{ 
 			if ( coin.cents <= changeDue )
