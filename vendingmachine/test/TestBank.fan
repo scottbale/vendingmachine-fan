@@ -53,6 +53,27 @@ class TestBank : Test
 		bank.deposit(coins)
 		verify(bank.purchase(60))
 		verify(bank.coinReturn.isEmpty)
-		verifyEq(coins, bank.coins)
+		verifyEq(3, bank.coins.size)
+		verify(coins.containsAll(bank.coins))
 	}
+	
+	Void testPurchaseChangeNeededButNotAvailable()
+	{
+		coins := Coin[Coin.quarter, Coin.quarter, Coin.quarter]
+		bank.deposit(coins)
+		verify(bank.purchase(60))
+		verify(bank.coinReturn.isEmpty)
+	}
+	
+	Void testPurchaseChangeNeeded()
+	{
+		bank.loadCoins(Coin[Coin.dime, Coin.nickel, Coin.quarter])
+		coins := Coin[Coin.quarter, Coin.quarter, Coin.quarter]
+		bank.deposit(coins)
+		verify(bank.purchase(60))
+		Coin[] returned := bank.coinReturn
+		verifyEq(2, returned.size)
+		verify(returned.containsAll(Coin[Coin.dime, Coin.nickel]))
+	}
+
 }	
