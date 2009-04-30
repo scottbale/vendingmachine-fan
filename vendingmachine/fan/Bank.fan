@@ -23,7 +23,7 @@ class Bank
 	Bool purchase(Int price)
 	{
 		if (this.sufficientFunds(price)){
-			Int changeDue := this.moveCoins(price)
+			Int changeDue := this.acceptCoins(price)
 			this.makeChange(changeDue)
 			return true
 		}
@@ -40,7 +40,7 @@ class Bank
 		return false
 	}
 	
-	private Int moveCoins(Int price)
+	private Int acceptCoins(Int price)
 	{
 		Int changeDue := coinsToReturn.reduce(0) |Obj change, Coin coin->Obj| { return (Int)change + coin.cents }
 		changeDue -= price
