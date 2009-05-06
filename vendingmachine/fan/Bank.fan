@@ -65,6 +65,7 @@ class Bank
 	}
 	
 	private Void sortCoins(){
+		// <=> is the comparator operator
 		coins.sortr |Coin a, Coin b->Int| { return a.cents <=> b.cents }
 	}
 }
