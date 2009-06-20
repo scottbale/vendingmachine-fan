@@ -1,6 +1,6 @@
 class TestVendingMachine : Test 
 {
-	VendingMachine vm
+	VendingMachine? vm
 
 	override
 	Void setup()

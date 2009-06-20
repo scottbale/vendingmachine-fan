@@ -1,6 +1,6 @@
 class TestInventory : Test 
 {
-	Inventory inventory
+	Inventory? inventory
 
 	override
 	Void setup()

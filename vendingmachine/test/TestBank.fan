@@ -1,6 +1,6 @@
 class TestBank : Test 
 {
-	Bank bank
+	Bank? bank
 
 	override
 	Void setup()
