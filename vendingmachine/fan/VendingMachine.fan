@@ -28,5 +28,9 @@ class VendingMachine
 		bank.loadCoins(coins)
 		inventory.add(items)
 	}
-
+	
+	override Str toStr()
+	{
+		return"\n-Inventory: $inventory.items\n-Available coins: $bank.coins\n-Coins to return: $bank.coinsToReturn\n"
+	}	
 }

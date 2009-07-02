@@ -8,7 +8,23 @@ class VendingMachineDemo
 		this.vm = vm
 	}
 	
-	Void hitItAndQuit()
+	override Obj? trap(Str name, Obj?[]? args){
+	
+		if (name == "info"){
+			return "demo: $vm"
+		} else if (name == "service"){
+			echo("Servicing machine: $args")
+			Coin[] coins := args[0]
+			Item:Int items := args[1]
+			vm.service(coins, items)
+			return null
+		} else {
+			return super.trap(name, args)
+		}
+	
+	}
+	
+	Void go()
 	{
 		echo("////////////////////////////////////////////////////////////////")
 		echo("Fan Vending Machine Demo")
@@ -76,13 +92,8 @@ class VendingMachineDemo
 		info()
 	}
 	
-	private Void info()
+	Void info()
 	{
-		echo("")
-		echo("-Inventory: " + vm.inventory.items)
-		echo("-Available coins: " + vm.bank.coins)
-		echo("-Coins to return: " + vm.bank.coinsToReturn)
-		echo("")
+		echo(vm.toStr)
 	}
-	
 }
