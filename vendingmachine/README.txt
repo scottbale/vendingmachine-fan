@@ -8,4 +8,4 @@ fan -version --Dfan.runtime=java
 fan -version --Dfan.runtime=dotnet
 fan HelloWorld.fan
 fan build.fan compile test
-fan vendingmachine
+fan vm
